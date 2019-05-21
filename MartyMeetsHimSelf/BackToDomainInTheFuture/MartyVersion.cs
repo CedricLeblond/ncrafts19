@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MartyMeetsHimSelf.BackToDomainInTheFuture
+﻿namespace MartyMeetsHimSelf.BackToDomainInTheFuture
 {
     public class MartyVersion
     {

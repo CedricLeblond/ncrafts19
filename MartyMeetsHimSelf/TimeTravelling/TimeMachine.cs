@@ -13,11 +13,8 @@ namespace MartyMeetsHimSelf.TimeTravelling
             foreach(var evt in evts)
             {
                 gom.OnTimeEvent(evt);
-                var martys = gom.GetActivatedMarty();
-                if (martys.Any())
-                {
-                    toBeReturned.AddMartys(martys, evt.SignalDate);
-                }
+                var martys = gom.GetActivatedMarty().ToList();
+                toBeReturned.AddMartys(martys, evt.SignalDate);
             }
             return toBeReturned;
         }
