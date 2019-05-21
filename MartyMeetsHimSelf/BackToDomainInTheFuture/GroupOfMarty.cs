@@ -6,16 +6,17 @@ namespace MartyMeetsHimSelf.BackToDomainInTheFuture
 {
     public class GroupOfMarty : IGroupOfMarty
     {
-        private List<Marty> martys = new List<Marty>(5);
-        public void AddMarty(Marty marty) => martys.Add(marty);
+        private readonly List<Marty> _registeredMartys = new List<Marty>(5);
+        public void AddMarty(Marty marty) => _registeredMartys.Add(marty);
+        public void AddRangeOfMarty(List<Marty> martys) => martys.ForEach(marty => _registeredMartys.Add(marty));
 
         public Marty GetMarty(string lookForOneMarty)
-            => martys.FirstOrDefault(mart => mart.Name.Value == lookForOneMarty);
+            => _registeredMartys.FirstOrDefault(mart => mart.Name.Value == lookForOneMarty);
 
         public void OnTimeEvent(TimeEvent te)
-            => martys.ForEach(mart => mart.OnTimeEvent(te));
+            => _registeredMartys.ForEach(mart => mart.OnTimeEvent(te));
 
         public IEnumerable<Marty> GetActivatedMarty()
-            => martys.Where(mart => mart.IsActivated);
+            => _registeredMartys.Where(mart => mart.IsActivated);
     }
 }

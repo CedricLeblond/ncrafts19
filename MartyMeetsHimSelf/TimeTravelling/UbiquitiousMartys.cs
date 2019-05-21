@@ -21,6 +21,6 @@ namespace MartyMeetsHimSelf.TimeTravelling
             : this(martys, new TimePeriod(period.Start, stop)) { }
 
         public override string ToString()
-            => $"Between {Period.Start} and {Period.Stop} you can find those Marty : {string.Join(", ", UbiquitiousMarty)}.";
+            => $"{string.Join(", ", UbiquitiousMarty.Distinct())} can be founded between {Period.Start.ToUniversalTime()} and {Period.Stop.ToUniversalTime()}.";
     }
 }

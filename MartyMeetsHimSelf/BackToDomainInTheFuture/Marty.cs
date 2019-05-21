@@ -7,14 +7,14 @@ namespace MartyMeetsHimSelf.BackToDomainInTheFuture
 {
     public class Marty
     {
-        private readonly List<TimePeriod> _list;
+        private readonly List<TimePeriod> _periods;
 
         public MartyVersion Name { get; }
 
         public Marty(string name, List<(DateTime, DateTime)> list)
         {
             Name = new MartyVersion(name);
-            _list = list.Select(tuple => new TimePeriod(tuple)).ToList();
+            _periods = list.Select(tuple => new TimePeriod(tuple)).ToList();
         }
 
         public bool IsActivated { get; internal set; }
@@ -22,9 +22,9 @@ namespace MartyMeetsHimSelf.BackToDomainInTheFuture
         public void OnTimeEvent(TimeEvent te)
         {
             var isIn = false;
-            foreach (var at in _list)
+            foreach (var period in _periods)
             {
-                isIn |= at.IsIn(te.SignalDate);
+                isIn |= period.IsIn(te.SignalDate);
             }
             IsActivated = isIn;
         }
