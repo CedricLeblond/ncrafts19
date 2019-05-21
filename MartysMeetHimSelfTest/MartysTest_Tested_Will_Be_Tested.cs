@@ -88,6 +88,7 @@ namespace MartysMeetHimSelfTest
             var time4 = DateTime.Parse("1985-10-21T10:17:00Z");
             var expectedInterval = new TimePeriod(time3, time2);
             var events = (new List<DateTime>(4) { time1, time2, time3, time4 })
+                         .OrderBy(dateTime => dateTime)
                          .Select(dateTime => new TimeEvent(dateTime));
             GroupOfMarty gom = new GroupOfMarty();
             var marty1 = new Marty("MartyTimeline1", new List<(DateTime, DateTime)> { (time1, time2) });
